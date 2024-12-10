@@ -1,0 +1,163 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Email до Дядо Коледа";
+}
+
+<div class="logo">
+    <img src="/images/logo.png" alt="Община Стара Загора" />
+</div>
+
+<div class="christmas-container text-center">
+    <h1 class="display-4 text-white">🎅 Напиши EMAIL до Дядо Коледа! 🎄</h1>
+    <p class="text-white">Дядо Коледа чака твоето писмо с нетърпение!</p>
+
+    <form method="post" id="letter-form">
+        <div class="form-group">
+            <label for="name" class="text-white">Твоето име:</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Въведи твоето име" required />
+        </div>
+
+        <div class="form-group">
+            <label for="wish" class="text-white">Какво искаш за Коледа?</label>
+            <textarea id="wish" name="wish" class="form-control" rows="4" placeholder="Опиши твоето желание" required></textarea>
+        </div>
+
+        <button type="button" class="btn btn-danger" id="send-button">📨 Изпрати email!</button>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert alert-success mt-3">
+            @Model.Message
+        </div>
+    }
+</div>
+
+<style>
+
+    .christmas-container {
+        margin-top: 10px; /* Сваля контейнера надолу с 50px */
+        padding: 20px; /* Запазва вътрешното отстояние */
+        /* background: rgba(0, 0, 0, 0.8); */
+        border-radius: 15px;
+        /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); */
+        color: white;
+    }
+
+    .letter-form {
+        max-width: 600px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .text-white {
+        color: #fff;
+    }
+
+    body {
+        background-color: #2e2e2e;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sendButton = document.getElementById("send-button");
+        const form = document.getElementById("letter-form");
+
+        // Добавяме слушател за клик върху бутона "Изпрати"
+        sendButton.addEventListener("click", function (event) {
+            // Създаване на диалогов прозорец
+            const dialog = document.createElement("div");
+            dialog.style.position = "fixed";
+            dialog.style.top = "50%";
+            dialog.style.left = "50%";
+            dialog.style.transform = "translate(-50%, -50%)";
+            dialog.style.background = "white";
+            dialog.style.padding = "30px"; /* Увеличаваме padding за повече пространство */
+            dialog.style.borderRadius = "15px"; /* По-заоблени ъгли */
+            dialog.style.boxShadow = "0 0 15px rgba(0, 0, 0, 0.7)"; /* По-силен ефект на сянка */
+            dialog.style.zIndex = "1000";
+            dialog.style.width = "400px"; /* Ширина на прозореца */
+            dialog.style.textAlign = "center"; /* Центриране на текста */
+
+            // Създаване на текст в диалоговия прозорец
+            const question = document.createElement("p");
+            question.innerText = "Бил ли си послушен през годината?";
+            question.style.marginBottom = "20px";
+            question.style.fontSize = "20px"; /* Увеличаваме размера на шрифта */
+            question.style.fontWeight = "bold"; /* Удебеляваме текста */
+            dialog.appendChild(question);
+
+            // Създаване на бутон "Да"
+            const yesButton = document.createElement("button");
+            yesButton.innerText = "Да";
+            yesButton.style.marginRight = "10px";
+            yesButton.style.padding = "10px 20px"; /* Увеличаваме размерите на бутона */
+            yesButton.style.fontSize = "16px"; /* Увеличаваме шрифта на текста в бутона */
+            yesButton.style.position = "relative"; /* Запазва оригиналната позиция */
+            dialog.appendChild(yesButton);
+
+            // Създаване на бутон "Не"
+            const noButton = document.createElement("button");
+            noButton.innerText = "Не";
+            noButton.style.padding = "10px 20px"; /* Увеличаваме размерите на бутона */
+            noButton.style.fontSize = "16px"; /* Увеличаваме шрифта на текста в бутона */
+            dialog.appendChild(noButton);
+
+            // Добавяме диалога към тялото на документа
+            document.body.appendChild(dialog);
+
+            // Логика за бутон "Не"
+            noButton.addEventListener("click", function () {
+                alert("Може би догодина ще бъдеш по-послушен! 🎅");
+                document.body.removeChild(dialog);
+
+                 form.submit();
+            });
+
+            // Логика за бутон "Да", който бяга
+            let timerActive = true;
+            const originalLeft = yesButton.style.left;
+            const originalTop = yesButton.style.top;
+
+            // След 5 секунди бутонът спира да бяга и се връща на оригиналната позиция
+            setTimeout(() => {
+                timerActive = false;
+                yesButton.style.left = originalLeft || "0px";
+                yesButton.style.top = originalTop || "0px";
+            }, 5000);
+
+            yesButton.addEventListener("mouseover", function () {
+                if (timerActive) {
+                    const randomX = Math.random() * 200; // Ограничаваме движението по X
+                    const randomY = Math.random() * 100; // Ограничаваме движението по Y
+
+                    yesButton.style.position = "absolute";
+                    yesButton.style.left = `${randomX}px`;
+                    yesButton.style.top = `${randomY}px`;
+                }
+            });
+
+            // Логика при натискане на "Да" (след като спре да бяга)
+            yesButton.addEventListener("click", function () {
+                if (!timerActive) {
+                    alert("Чудесно! Emаil-a ти ще бъде изпратен! 🎁");
+                    document.body.removeChild(dialog);
+
+                    form.submit();
+                }
+            });
+        });
+    });
+</script>
+

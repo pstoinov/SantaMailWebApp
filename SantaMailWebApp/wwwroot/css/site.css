@@ -1,0 +1,102 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+header {
+    position: relative; /* За да можем да поставим overlay вътре */
+    background-image: url('/images/header-background.png'); /* Пътят към изображението */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white; /* Бял текст за контраст */
+}
+
+/* Удебеляване на текста в навбара */
+.navbar-nav .nav-link {
+    font-weight: bold; /* Удебелен шрифт */
+    font-size: 1.1rem; /* Увеличен размер на текста */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Сянка за по-четлив текст */
+    color: white !important; /* Уверява се, че текстът остава бял */
+}
+
+    /* При задържане с мишката */
+    .navbar-nav .nav-link:hover {
+        color: #FFD700 !important; /* Промяна на цвета при hover (златисто) */
+        text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7); /* По-силна сянка */
+        transition: color 0.3s ease, text-shadow 0.3s ease; /* Плавен преход */
+    }
+
+.navbar {
+    
+    background-color: transparent !important; /* Премахва фона на Bootstrap навигацията */
+}
+
+.nav-link {
+
+    color: white !important; /* Увери се, че линковете са видими на цветен фон */
+}
+
+.navbar-brand {
+    color: white !important; /* За логото на сайта */
+}
+
+html, body {
+    height: 100%; /* Увери се, че html и body са с височина 100% */
+    margin: 0; /* Премахни всички външни отстояния */
+    background-image: url('/images/christmas-background.jpg'); /* Пътят към изображението */
+    background-size: cover; /* Фонът да покрива целия екран */
+    background-position: center; /* Центриране на изображението */
+    background-attachment: fixed; /* Фиксиран фон за по-приятен ефект */
+    background-repeat: no-repeat; /* Избягване на повтаряне на фона */
+}
+
+.christmas-container {
+    
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    text-align: center; /* Центрира съдържанието на дива */
+    margin-top: 80px;
+}
+
+.logo img {
+    max-width: 100%; /* Уверява се, че изображението няма да излезе извън дива */
+    height: auto; /* Запазва пропорциите на изображението */
+}
+
+.footer {
+    display: none;
+    /*background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px 0;*/ /* Отстояние отгоре и отдолу */
+    /*color: white;*/ /* Бял текст */
+    /*text-align: center;*/ /* Центрира текстовете */
+}
+
+.footer-text {
+    /*font-weight: bold;*/ /* Удебелен шрифт */
+    /*font-size: 1.2rem;*/ /* Увеличен размер на текста */
+    /*text-transform: uppercase;*/ /* Всички букви главни */
+    /*color: white;*/ /* Бял текст за контраст */
+}

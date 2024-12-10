@@ -1,0 +1,106 @@
+﻿@* @page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Track Santa";
+}
+<div class="santa-tracker-container text-center">
+    <h1 class="display-4 text-white">🎅 Дядо Коледа Тракер 🎄</h1>
+    <p class="text-white">Следи движението на Дядо Коледа по света!</p>
+
+    <!-- Карта на Дядо Коледа -->
+    <div id="santa-map" class="santa-map"></div>
+
+    <!-- Информация за текущото местоположение -->
+    <div class="santa-info mt-4">
+        <h2 class="text-white">📍 Къде е Дядо Коледа в момента?</h2>
+        <p class="text-white" id="santa-location">Изчисляваме местоположението на Дядо Коледа...</p>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #2e2e2e;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .santa-tracker-container {
+        
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        color: white;
+    }
+
+    .santa-map {
+        width: 100%;
+        height: 400px;
+        background-color: #ddd;
+        border: 2px solid #fff;
+        border-radius: 10px;
+        margin: 0 auto;
+    }
+
+    .text-white {
+        color: white;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Местоположения на Дядо Коледа
+        const santaLocations = [
+            { city: "София", country: "България", lat: 42.6977, lon: 23.3219 },
+            { city: "Хелзинки", country: "Финландия", lat: 60.1695, lon: 24.9354 },
+            { city: "Лондон", country: "Великобритания", lat: 51.5074, lon: -0.1278 },
+            { city: "Ню Йорк", country: "САЩ", lat: 40.7128, lon: -74.0060 },
+            { city: "Сидни", country: "Австралия", lat: -33.8688, lon: 151.2093 },
+        ];
+
+        const locationElement = document.getElementById("santa-location");
+
+        // Симулираме движение на Дядо Коледа
+        let currentLocationIndex = 0;
+        setInterval(() => {
+            const location = santaLocations[currentLocationIndex];
+            locationElement.textContent = `Дядо Коледа е в ${location.city}, ${location.country}!`;
+
+            // Превключваме към следващото местоположение
+            currentLocationIndex = (currentLocationIndex + 1) % santaLocations.length;
+        }, 5000); // Обновяваме на всеки 5 секунди
+    });
+</script>
+ *@
+
+@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Track Santa";
+}
+
+<div class="santa-tracker-container text-center">
+    <h1 class="display-4 text-white">🎅 Следи Дядо Коледа в реално време! 🎄</h1>
+    <p class="text-white">Виж къде е Дядо Коледа в момента:</p>
+
+    <!-- Вграждане на Santa Tracker -->
+    <iframe src="https://santatracker.google.com/intl/bg/tracker.html"
+            width="100%"
+            height="600"
+            style="border: none;"
+            allowfullscreen>
+    </iframe>
+</div>
+
+<style>
+    .santa-tracker-container {
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+
+    body {
+        background-color: #2e2e2e;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
